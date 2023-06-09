@@ -2,19 +2,22 @@
 Здесь представлено руководство по настройке роутера OpenWRT в виде виртуальной машины VirtualBox. Выполняется подключение виртуальных машин к сети роутера. Дополнительно настраивается OpenVPN на роутере.
 
 # Предварительные требования
-1. Установлен VirtualBox
+- [x] Установлен VirtualBox
+- [x] Создана конфигурация OpenVPN (без PAM авторизации)
 
-# Прошивка OpenWRT
-1. На [сайте](https://downloads.openwrt.org/releases/) с прошивками скачиваем последнюю версию (на момент написания руководства - [22.03.5 generic-ext4-combined.img.gz](https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/)).
+# Руководство
+## Шаг 1. Прошивка OpenWRT
+1. На сайте с прошивками скачиваем последнюю версию (на момент написания руководства - [22.03.5 generic-ext4-combined.img.gz](https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/)).
 
 Прямая ссылка: [generic-ext4-combined.img.gz](https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/openwrt-22.03.5-x86-64-generic-ext4-combined.img.gz)
+
 2. Распакованный образ копируем в корневой каталог установки VirtualBox и конвертируем его в формат VDI.
 ```
 ./VBoxManage.exe convertfromraw --format VDI openwrt-22.03.5-x86-64-generic-ext4-combined.img openwrt-22.03.5.vdi
 ```
 > Файл .img больше не нужен, а .vdi можно скопировать в удобное место для дальнейшего использования в VirtualBox.
 
-# Создание ВМ
+## Шаг 2. Создание ВМ
 1. При создании ВМ в **Имя и тип ОС** не указываем образ. В меню **Жёсткий диск** нужно включить **Использовать существующий виртуальный жёсткий диск**. Добавляем наш .vdi и выбираем его.
 ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f8203a97-7d38-4d38-bfcb-d418e5ab4b80)
 
@@ -37,39 +40,26 @@
 
 Теперь весь трафик, подключенный к сети **intnet-openwrt**, будет идти через роутер. Дополнительных настроек делать не нужно.
 
-# Подключение роутера к роутеру
+## Шаг 3. Подключение роутера к роутеру
 
 Если стоит задача создать связку из нескольких VPN, например, Double VPN, или добавить связку с TOR (VPN-TOR-VPN), или к NYM - достаточно создать несколько роутеров и подключить их друг к другу, предварительно выполнив подключение к VPN/TOR/NYM на каждом.
 
 1. Рассмотрим пример с двойным VPN, тогда настройка адаптеров **Сети** роутеров будет следующая:
-```
-R1 (выход в интернет)
-Адаптер 1
-Тип: Внутренняя сеть
-Имя: intnet-openwrt-1
 
-Адаптер 2
-Тип: Сетевой мост
-```
-```
-R2 (подключен к R1)
-Адаптер 1
-Тип: Внутренняя сеть
-Имя: intnet-openwrt-2
+| Роутер  | Адаптер 1 (LAN) | Адаптер 2 (WAN) |
+| ------------- | ------------- | ------------- |
+|R1 (выход в интернет)|Внутренняя сеть (intnet-openwrt-1)|Сетевой мост|
+|R2 (подключен к R1)|Внутренняя сеть (intnet-openwrt-2)|Внутренняя сеть (intnet-openwrt-1)|
 
-Адаптер 2
-Тип: Внутренняя сеть
-Имя: intnet-openwrt-1
-```
 > Получается, что WAN для R2 это LAN для R1.
 
 **Важная помарка**: у R2 должна быть перенастроена сеть LAN с дефолтного 192.168.1.1/24 на 192.168.2.1/24, чтобы не было конфликта с R1.
 
 2. Изменение настроек сети LAN на R2.
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/7a1d1a36-7203-4753-bcb4-7f752b3df5e3)
-
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/2d18bd47-ec6d-4408-a31d-6207acee780c)
+| 1  | 2 |
+| ------------- | ------------- |
+| ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/7a1d1a36-7203-4753-bcb4-7f752b3df5e3) | ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/2d18bd47-ec6d-4408-a31d-6207acee780c) |
 
 Сохраняем, применяем и ждём, пока роутер применит настройки.
 
@@ -77,7 +67,8 @@ R2 (подключен к R1)
 
 ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/8d6a5a46-4e10-44a3-bd4a-0d5a05b86cdc)
 
-# Установка OpenVPN на роутер (без утечек)
+## Шаг 4. Установка OpenVPN на роутер (без утечек)
+> Не забываем после каждых изменений нажимать **Save & Apply**.
 
 1. Обновляем список приложений роутера.
 
@@ -85,19 +76,29 @@ R2 (подключен к R1)
 
 2. Устанавливаем пакеты **openvpn-openssl** и **luci-app-openvpn**. Все галочки оставляем по умолчанию.
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/a6827b07-06b3-45ff-ba94-a60b93f5f070)
+| 1  | 2 |
+| ------------- | ------------- |
+| ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/a6827b07-06b3-45ff-ba94-a60b93f5f070)  | ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f116c207-b22e-4b43-98b8-8b9b7c53ec2c)  |
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f116c207-b22e-4b43-98b8-8b9b7c53ec2c)
+3. Обновляем страницу, находим новое меню **VPN**. Загружаем готовую конфигурацию .ovpn, даём название, сохраняем, включаем **Enabled**.
 
-3. Обновляем страницу, находим новое меню **VPN**.
+| 1  | 2 |
+| ------------- | ------------- |
+| ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/760c72b7-97fd-4b55-8634-1002d8f2fc0f) | ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f167346a-0c1e-4856-821d-ea65bf5fa1b4) |
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/5a866a33-74ae-4286-a62a-8ac4c0c976f3)
+4. Добавляем новый интерфейс для нашего VPN подключения. В **Advanced Settings** должен быть включен флаг **Use default gateway**, а у интерфейса **WAN** этот флаг должен быть снят.
+Нажимаем **Save & Apply** и ждём. Интерфейс должен поднятся и показать статистику RX/TX.
 
-4. Загружаем готовую конфигурацию .ovpn, даём название, сохраняем.
+| 1  | 2 |
+| ------------- | ------------- |
+|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/cdda1ea7-64d7-49e5-b7ca-6f507f70e0e2)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/54751c50-ac1e-4bcf-a1cd-2461f88070f9)|
+|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/ed928568-a7a7-4ad0-9a7f-b13a1f9d707d)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/c0a0a4ad-b247-489e-998e-f97e8efcb959)|
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/760c72b7-97fd-4b55-8634-1002d8f2fc0f)
+5. Поскольку мы выключили маршрут по умолчанию для WAN, мы должны прописать статический маршрут до IP нашего VPN-сервера через шлюз нашего интернет провайдера, либо шлюз домашнего роутера.
 
-5. Включаем авто-подключение (**Enabled**) при рестарте роутера.
+| 1  | 2 |
+| ------------- | ------------- |
+|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f51e5138-da15-4847-8a82-73490b2d0614)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/33961b7f-ef78-47e4-8f19-409a01b3a2ff)|
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f167346a-0c1e-4856-821d-ea65bf5fa1b4)
-
+6. С этого момента у роутера появился интернет. Конечная таблица маршрутов роутера должна выглядеть так.
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/78e8910d-52df-41cf-9e68-f35ae1ed5e66)
