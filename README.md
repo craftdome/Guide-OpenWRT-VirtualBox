@@ -79,5 +79,25 @@ R2 (подключен к R1)
 
 # Установка OpenVPN на роутер (без утечек)
 
-1. 
+1. Обновляем список приложений роутера.
+
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/c2d80504-4efd-4113-8bcd-b305e6f49259)
+
+2. Устанавливаем пакеты **openvpn-openssl** и **luci-app-openvpn**. Все галочки оставляем по умолчанию.
+
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/a6827b07-06b3-45ff-ba94-a60b93f5f070)
+
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f116c207-b22e-4b43-98b8-8b9b7c53ec2c)
+
+3. Обновляем страницу, находим новое меню **VPN**.
+
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/5a866a33-74ae-4286-a62a-8ac4c0c976f3)
+
+4. Загружаем готовую конфигурацию .ovpn, даём название, сохраняем.
+
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/760c72b7-97fd-4b55-8634-1002d8f2fc0f)
+
+5. Включаем авто-подключение (**Enabled**) при рестарте роутера.
+
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f167346a-0c1e-4856-821d-ea65bf5fa1b4)
 
