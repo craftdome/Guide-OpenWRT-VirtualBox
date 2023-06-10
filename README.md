@@ -94,11 +94,19 @@
 |![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/cdda1ea7-64d7-49e5-b7ca-6f507f70e0e2)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/54751c50-ac1e-4bcf-a1cd-2461f88070f9)|
 |![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/ed928568-a7a7-4ad0-9a7f-b13a1f9d707d)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/c0a0a4ad-b247-489e-998e-f97e8efcb959)|
 
-5. Поскольку мы выключили маршрут по умолчанию для WAN, мы должны прописать статический маршрут до IP нашего VPN-сервера через шлюз нашего интернет провайдера, либо шлюз домашнего роутера.
+5. До подключения к интернету заблокируем в зоне **WAN** цепочку **OUTPUT** - это уберёт утечку DNS. **Save & Apply**
+
+| 1  | 2 |
+| ------------- | ------------- |
+|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/21248889-43f5-4294-b89c-31b271f42265)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/b35900cd-f596-4b28-a4c4-90fc0bf286ac)|
+
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/8a483ffb-5b6e-4283-a682-025c933facaf)
+
+6. Поскольку мы выключили маршрут по умолчанию для WAN, мы должны прописать статический маршрут до IP нашего VPN-сервера через шлюз нашего интернет провайдера, либо шлюз домашнего роутера.
 
 | 1  | 2 |
 | ------------- | ------------- |
 |![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f51e5138-da15-4847-8a82-73490b2d0614)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/33961b7f-ef78-47e4-8f19-409a01b3a2ff)|
 
-6. С этого момента у роутера появился интернет. Конечная таблица маршрутов роутера должна выглядеть так.
+7. С этого момента у роутера появился интернет. Конечная таблица маршрутов роутера должна выглядеть так.
 ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/78e8910d-52df-41cf-9e68-f35ae1ed5e66)
