@@ -94,6 +94,8 @@
 |![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/cdda1ea7-64d7-49e5-b7ca-6f507f70e0e2)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/54751c50-ac1e-4bcf-a1cd-2461f88070f9)|
 |![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/ed928568-a7a7-4ad0-9a7f-b13a1f9d707d)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/c0a0a4ad-b247-489e-998e-f97e8efcb959)|
 
+![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/9cf612f9-c497-43ea-ab67-fb8b3d40395c)
+
 5. До подключения к интернету заблокируем в зоне **WAN** цепочку **OUTPUT** - это уберёт утечку DNS. **Save & Apply**
 
 | 1  | 2 |
