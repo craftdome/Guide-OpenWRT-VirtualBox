@@ -107,4 +107,5 @@
 ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/e3385368-e914-4f3a-b88c-694a02518580)
 
 6. С этого момента у роутера появился интернет. Конечная таблица маршрутов роутера должна выглядеть так.
+
 ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/78e8910d-52df-41cf-9e68-f35ae1ed5e66)
