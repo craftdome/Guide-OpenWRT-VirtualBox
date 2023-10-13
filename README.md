@@ -19,7 +19,7 @@
 
 ## Шаг 2. Создание ВМ
 1. При создании ВМ в **Имя и тип ОС** не указываем образ. В меню **Жёсткий диск** нужно включить **Использовать существующий виртуальный жёсткий диск**. Добавляем наш .vdi и выбираем его.
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f8203a97-7d38-4d38-bfcb-d418e5ab4b80)
+![244682927-f8203a97-7d38-4d38-bfcb-d418e5ab4b80](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/73b2cdc8-1e19-42d2-8050-f3d3815c57a3)
 
 Настройки оборудования можно поставить следующие: основная память(ОЗУ) - **256МБ**, процессоры - 1.
 Нажимаете **Готово**.
@@ -59,53 +59,54 @@
 
 | 1  | 2 |
 | ------------- | ------------- |
-| ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/7a1d1a36-7203-4753-bcb4-7f752b3df5e3) | ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/2d18bd47-ec6d-4408-a31d-6207acee780c) |
+| ![244690259-7a1d1a36-7203-4753-bcb4-7f752b3df5e3](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/757518cd-94d7-4a67-996e-61843274fe90) | ![244692336-2d18bd47-ec6d-4408-a31d-6207acee780c](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/62812471-3987-42f3-9297-5fce98a137a9) |
 
 Сохраняем, применяем и ждём, пока роутер применит настройки.
 
 3. Если нужно отключить IPv6, делаем следующее.
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/8d6a5a46-4e10-44a3-bd4a-0d5a05b86cdc)
+![244691831-8d6a5a46-4e10-44a3-bd4a-0d5a05b86cdc](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/2bd319d2-c4ef-4a59-8364-ff8103d6c848)
+
 
 ## Шаг 4. Установка OpenVPN на роутер (без утечек)
 > Не забываем после каждых изменений нажимать **Save & Apply**.
 
 1. Обновляем список приложений роутера.
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/c2d80504-4efd-4113-8bcd-b305e6f49259)
+![244700984-c2d80504-4efd-4113-8bcd-b305e6f49259](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/b2c23999-24ed-45b9-80f4-1163223ed33b)
 
 2. Устанавливаем пакеты **openvpn-openssl** и **luci-app-openvpn**. Все галочки оставляем по умолчанию.
 
 | 1  | 2 |
 | ------------- | ------------- |
-| ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/a6827b07-06b3-45ff-ba94-a60b93f5f070)  | ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f116c207-b22e-4b43-98b8-8b9b7c53ec2c)  |
+| ![244701705-a6827b07-06b3-45ff-ba94-a60b93f5f070](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/444d9395-d9bb-46d4-a2fa-8fd2445f4806) | ![244702555-f116c207-b22e-4b43-98b8-8b9b7c53ec2c](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/ae80502a-b810-42b8-8165-ac1975217321) |
 
 3. Обновляем страницу, находим новое меню **VPN**. Загружаем готовую конфигурацию .ovpn, даём название, сохраняем, включаем **Enabled**.
 
 | 1  | 2 |
 | ------------- | ------------- |
-| ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/760c72b7-97fd-4b55-8634-1002d8f2fc0f) | ![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f167346a-0c1e-4856-821d-ea65bf5fa1b4) |
+| ![244704861-760c72b7-97fd-4b55-8634-1002d8f2fc0f](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/fdf22856-e853-4053-933c-6e05a27b7e7a) | ![244705656-f167346a-0c1e-4856-821d-ea65bf5fa1b4](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/863dba91-47d3-463d-9fff-a867f4eb7979) |
 
 4. Добавляем новый интерфейс для нашего VPN подключения. В **Advanced Settings** должен быть включен флаг **Use default gateway**, а у интерфейса **WAN** этот флаг должен быть снят.
 Нажимаем **Save & Apply** и ждём. Интерфейс должен поднятся и показать статистику RX/TX.
 
 | 1  | 2 |
 | ------------- | ------------- |
-|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/cdda1ea7-64d7-49e5-b7ca-6f507f70e0e2)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/54751c50-ac1e-4bcf-a1cd-2461f88070f9)|
-|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/ed928568-a7a7-4ad0-9a7f-b13a1f9d707d)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/c0a0a4ad-b247-489e-998e-f97e8efcb959)|
+|![244732189-cdda1ea7-64d7-49e5-b7ca-6f507f70e0e2](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/ef4c51b8-9c01-4ee5-b4c4-89799821221d)|![244731924-54751c50-ac1e-4bcf-a1cd-2461f88070f9](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/6f2f684f-eaeb-452c-924c-f090a11f6d60)|
+|![244732285-ed928568-a7a7-4ad0-9a7f-b13a1f9d707d](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/71bdf0b3-ba51-4457-b3da-ac3904c643eb)|![244732589-c0a0a4ad-b247-489e-998e-f97e8efcb959](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/c9ee97ff-762d-4b47-87fa-4f3edc7c2bb8)|
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/9cf612f9-c497-43ea-ab67-fb8b3d40395c)
+![244866242-9cf612f9-c497-43ea-ab67-fb8b3d40395c](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/3db9ed6e-ce98-4170-a3db-11a55b1f82a1)
 
 5. Поскольку мы выключили маршрут по умолчанию для WAN, мы должны прописать статический маршрут до IP нашего VPN-сервера (инт. **WAN**) через шлюз нашего интернет провайдера, либо шлюз домашнего роутера.
 
 | 1  | 2 |
 | ------------- | ------------- |
-|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/f51e5138-da15-4847-8a82-73490b2d0614)|![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/33961b7f-ef78-47e4-8f19-409a01b3a2ff)|
+|![244733340-f51e5138-da15-4847-8a82-73490b2d0614](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/d1d170ee-ac71-4048-ac1f-1de529ea70f3)|![244733808-33961b7f-ef78-47e4-8f19-409a01b3a2ff](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/5d92f7b1-eee0-4cbe-8e06-a0a849b1574d)|
 
 Дополнительно прописываем маршрут по умолчанию для всего остального трафика 0.0.0.0/0 через созданный интерфейс **OpenVPN**.
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/e3385368-e914-4f3a-b88c-694a02518580)
+![244921476-e3385368-e914-4f3a-b88c-694a02518580](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/7c4a2985-969a-4332-a272-639d5b253565)
 
 6. С этого момента у роутера появился интернет. Конечная таблица маршрутов роутера должна выглядеть так.
 
-![изображение](https://github.com/Tyz3/Guide-OpenWRT-VirtualBox/assets/21179689/78e8910d-52df-41cf-9e68-f35ae1ed5e66)
+![244735203-78e8910d-52df-41cf-9e68-f35ae1ed5e66](https://github.com/craftdome/Guide-OpenWRT-VirtualBox/assets/21179689/a49e0df6-c014-4f7d-aa2e-56f77ba48f96)
